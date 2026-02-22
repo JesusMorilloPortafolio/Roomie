@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="estilo.css">
+    <title>Roomie </title>
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <div class="logo-titulo">
+                <a href="index 3.html">
+                    <img src="img/logo2.png" alt="Logo" class="logo-mini">
+                    <h1>Roomie</h1>
+                </a>
+            </div>
+            <nav id="nav">
+                <a href="index 3.html" class="selected">Inicio</a>
+                <a href="blog.html">Blog</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="suscripcion.html">Suscripción</a>
+                <span id="close-responsive">
+                    <i class="fa-solid fa-xmark" style="color: white;"></i>
+                </span>
+            </nav>
+            <div id="nav-responsive">
+                <i class="fa-solid fa-bars" style="color: white;"></i>
+            </div>
+            <div class="carrito">
+                <span class="total-compra" style="color: white;" >Tasa de cambio Bs. 300</span>
+                <a href="carrito.html">
+                    
+                        </div>
+                    </span>
+                </a>
+            </div>
+        </header>
+
+            <section class="contenedor-seccion">
+            <div class="fondo-seccion"></div>
+            <div class="header-seccion">
+                <div class="col">
+                    
+                </div>
+                <div class="centro">
+                  
+                </div>
+                
+                    </a>
+                </div>
+            </div>
+
+            <section class="detalle-producto">
+                <div class="fila">
+                    <div class="col izquierda">
+                        <h3>Habitación individual para estudiante universitario con servicios incluidos</h3>
+                        <p>Se ofrece habitación individual, cómoda y funcional, ideal para estudiante universitario. El espacio cuenta con cama, escritorio y armario, proporcionando un entorno tranquilo y privado para estudiar y descansar. Los servicios están incluidos (agua, luz, internet y limpieza básica), lo que facilita la organización y reduce preocupaciones. Ubicada cerca de universidades y con acceso a transporte y comercios, es la opción perfecta para una estancia práctica y segura. </p>
+                        <div class="miniaturas">
+                            <img src="img/mini-shoes7.jpg" alt="" class="mini-selected" onclick="setMini(0)">
+                            <img src="img/mini-shoes8.jpg" alt="" onclick="setMini(1)">
+                            <img src="img/mini-shoes8.jpg" alt="" onclick="setMini(2)">
+
+                        </div>
+
+                    </div>
+                    <div class="col centro">
+                        <div class="img-producto" id="img-producto">
+                            <img src="img/shoes3.jpg" alt="" id="imgProducto">
+                            <h3 class="precio-producto">$68</h3>
+                        </div>
+                    </div>
+                    <div class="review-center-container">
+                        <button class="review-open-btn" id="openReviewBtn">
+                            Reviews <i class="fa-solid fa-star"></i>
+                        </button>
+                    </div>
+
+                    <!-- MODAL -->
+                    <div class="review-overlay" id="reviewModal">
+                        <div class="review-box">
+                            <span class="review-close-btn" id="closeReviewBtn">&times;</span>
+                            <h3>Deja tu comentario</h3>
+                            <div class="review-average-box">
+                            ⭐ Promedio: <span id="reviewAverage"></span> / 5
+                                </div>
+
+                                <div id="reviewList"></div>
+
+                            <!-- Estrellas -->
+                            <div class="review-stars" id="starRating">
+                                <i class="fa-solid fa-star" data-value="1"></i>
+                                <i class="fa-solid fa-star" data-value="2"></i>
+                                <i class="fa-solid fa-star" data-value="3"></i>
+                                <i class="fa-solid fa-star" data-value="4"></i>
+                                <i class="fa-solid fa-star" data-value="5"></i>
+                            </div>
+
+                            <!-- Comentario -->
+                            <textarea class="review-textarea" placeholder="Escribe tu experiencia..."></textarea>
+
+                            <button class="review-submit-btn">Enviar</button>
+                        </div>
+                    </div>
+
+                        <script>
+
+                        let reviews = [];
+                        let selectedRating = 0;
+
+                        /* ===== GENERAR DATOS ALEATORIOS ===== */
+
+                        const nombres = ["Sebastian marquez","Marian Roxana","Vanessa","María Marrero","Hamlin Jordan","Laura Díaz","Andrés Rojas","Valentina Ruiz","Miguel Torres","Sofía Herrera"];
+
+                        const comentariosPositivos = [
+                        "Muy buena experiencia.",
+                        "Excelente servicio.",
+                        "Todo estuvo perfecto.",
+                        "Lo recomiendo totalmente.",
+                        "Volvería sin dudarlo."
+                        ];
+
+                        const comentariosNegativos = [
+                        "No fue lo que esperaba.",
+                        "Puede mejorar bastante.",
+                        "Tuve algunos inconvenientes.",
+                        "La atención fue regular.",
+                        "No me convenció del todo."
+                        ];
+
+                        function generarFechaAleatoria(){
+                            const fecha = new Date();
+                            fecha.setDate(fecha.getDate() - Math.floor(Math.random()*60));
+                            return fecha.toLocaleDateString();
+                        }
+
+                        for(let i=0;i<10;i++){
+                            let rating = Math.floor(Math.random()*5)+1;
+                            let comentario = rating >=3 
+                                ? comentariosPositivos[Math.floor(Math.random()*comentariosPositivos.length)]
+                                : comentariosNegativos[Math.floor(Math.random()*comentariosNegativos.length)];
+
+                            reviews.push({
+                                nombre: nombres[i],
+                                rating: rating,
+                                comentario: comentario,
+                                fecha: generarFechaAleatoria()
+                            });
+                        }
+
+                        /* ===== FUNCIONES ===== */
+
+                        function calcularPromedio(){
+                            let total = reviews.reduce((acc,r)=>acc+r.rating,0);
+                            let promedio = (total / reviews.length).toFixed(1);
+                            document.getElementById("reviewAverage").innerText = promedio;
+                        }
+
+                        function renderReviews(){
+                            const container = document.getElementById("reviewList");
+                            container.innerHTML = "";
+
+                            reviews.slice(0,5).forEach(r => {
+                                container.innerHTML += `
+                                    <div class="review-item">
+                                        <strong>${r.nombre}</strong> 
+                                        <span class="review-date">${r.fecha}</span>
+                                        <div class="review-stars-display">
+                                            ${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}
+                                        </div>
+                                        <p>${r.comentario}</p>
+                                    </div>
+                                `;
+                            });
+                        }
+
+                        /* ===== ABRIR Y CERRAR ===== */
+
+                        document.getElementById("openReviewBtn").addEventListener("click", function(){
+                            document.getElementById("reviewModal").style.display="flex";
+                        });
+
+                        document.getElementById("closeReviewBtn").addEventListener("click", function(){
+                            document.getElementById("reviewModal").style.display="none";
+                        });
+
+                        window.addEventListener("click", function(e){
+                            const modal = document.getElementById("reviewModal");
+                            if(e.target === modal){
+                                modal.style.display="none";
+                            }
+                        });
+
+                        /* ===== SELECCIÓN ESTRELLAS ===== */
+
+                        const stars = document.querySelectorAll("#starRating i");
+                        stars.forEach(star => {
+                            star.addEventListener("click", function(){
+                                selectedRating = this.getAttribute("data-value");
+                                stars.forEach(s => s.classList.remove("active"));
+                                for(let i=0; i<selectedRating; i++){
+                                    stars[i].classList.add("active");
+                                }
+                            });
+                        });
+
+                        /* ===== AGREGAR NUEVA REVIEW ===== */
+
+                        document.querySelector(".review-submit-btn").addEventListener("click", function(){
+
+                            const texto = document.querySelector(".review-textarea").value.trim();
+
+                            if(selectedRating == 0 || texto === ""){
+                                alert("Debes seleccionar estrellas y escribir un comentario.");
+                                return;
+                            }
+
+                            reviews.unshift({
+                                nombre:"Tú",
+                                rating: parseInt(selectedRating),
+                                comentario: texto,
+                                fecha: new Date().toLocaleDateString()
+                            });
+
+                            document.querySelector(".review-textarea").value="";
+                            stars.forEach(s => s.classList.remove("active"));
+                            selectedRating=0;
+
+                            calcularPromedio();
+                            renderReviews();
+                        });
+
+                        /* ===== INICIALIZAR ===== */
+
+                        calcularPromedio();
+                        renderReviews();
+
+                        </script>
+
+                    
+                    
+                    <div class="col derecha">
+                        
+                        <!-- Edad -->
+                            <div class="grupo">
+                                <p>Edad:</p>
+                                <label><input type="radio" name="edad" value="18-25"> 18-25</label>
+                                <label><input type="radio" name="edad" value="26-35"> 26-35</label>
+                                <label><input type="radio" name="edad" value="36-45"> 36-45</label>
+                                <label><input type="radio" name="edad" value="46+"> 46+</label>
+                            </div>
+
+                            <!-- Hijos -->
+                            <div class="grupo">
+                                <p>¿Tienes hijos?</p>
+                                <label><input type="radio" name="hijos" value="si"> Sí</label>
+                                <label><input type="radio" name="hijos" value="no"> No</label>
+                            </div>
+
+                            <!-- Mascotas -->
+                            <div class="grupo">
+                                <p>¿Tienes mascotas?</p>
+                                <label><input type="radio" name="mascotas" value="perro"> Perro</label>
+                                <label><input type="radio" name="mascotas" value="gato"> Gato</label>
+                                <label><input type="radio" name="mascotas" value="otros"> Otros</label>
+                                <label><input type="radio" name="mascotas" value="No"> No</label>
+                            </div>
+
+                            <!-- Presupuesto -->
+                            <div class="grupo">
+                                <p>Presupuesto:</p>
+                                <label><input type="radio" name="presupuesto" value="50">$50</label>
+                                <label><input type="radio" name="presupuesto" value="100">$100</label>
+                                <label><input type="radio" name="presupuesto" value="150">$150</label>
+                                <label><input type="radio" name="presupuesto" value="200+">$200+</label>
+                            </div>
+
+                            <button id="verificar">Verificar requisitos</button>
+                            <p id="resultado"></p>
+
+                            <script>
+                            document.getElementById("verificar").addEventListener("click", function() {
+                                const edad = document.querySelector('input[name="edad"]:checked')?.value;
+                                const hijos = document.querySelector('input[name="hijos"]:checked')?.value;
+                                const mascotas = document.querySelector('input[name="mascotas"]:checked')?.value;
+                                const presupuesto = document.querySelector('input[name="presupuesto"]:checked')?.value;
+
+                                let calificado = true;
+                                let motivos = [];
+
+                                // Validar Edad
+                                if (!edad) {
+                                    calificado = false;
+                                    motivos.push("No seleccionaste tu edad");
+                                } else if (edad === "46+") {
+                                    calificado = false;
+                                    motivos.push("Edad mayor a 45 años");
+                                }
+
+                                // Validar Hijos
+                                if (!hijos) {
+                                    calificado = false;
+                                    motivos.push("No seleccionaste si tienes hijos");
+                                } else if (hijos === "si") {
+                                    calificado = false;
+                                    motivos.push("Tener hijos no califica");
+                                }
+
+                                // Validar Mascotas
+                                if (!mascotas) {
+                                    calificado = false;
+                                    motivos.push("No seleccionaste si tienes mascotas");
+                                } else if (mascotas !== "perro" && mascotas !== "gato") {
+                                    calificado = false;
+                                    motivos.push("Mascotas no calificadas");
+                                }
+
+                                // Validar Presupuesto
+                                if (!presupuesto) {
+                                    calificado = false;
+                                    motivos.push("No seleccionaste presupuesto");
+                                } else if (parseInt(presupuesto) < 100) {
+                                    calificado = false;
+                                    motivos.push("Presupuesto insuficiente");
+                                }
+
+                                const resultado = document.getElementById("resultado");
+                                if (calificado) {
+                                    resultado.textContent = "¡Estás calificado!";
+                                    resultado.style.color = "green";
+                                } else {
+                                    resultado.innerHTML = "No estás calificado.<br>Motivos:<br>- " + motivos.join("<br>- ");
+                                    resultado.style.color = "red";
+                                }
+                            });
+                            </script>
+                        Metodos de pago
+                        <div class="info-detalle">
+                             
+                        <button class="size-selected" onclick="setSize(0)">
+                            <img src="img/size39.png" alt="Cashea" class="img-size">
+                        </button>
+
+                        <button onclick="setSize(1)">
+                            <img src="img/size40.png" alt="Pago movil" class="img-size">
+                        </button>
+
+                        <button onclick="setSize(2)">
+                            <img src="img/size42.png" alt="Cuadralo" class="img-size">
+                        </button>
+                        </div>
+
+                        <button class="btn-agregar-carrito">Contactar</button>
+                        
+                    </div>
+                </div>
+            </section>
+                             <div id="chatContainer" class="chat-container">
+
+                    <div class="chat-header">
+                        <div class="chat-info">
+                            <span class="chat-name">Sra Hadita</span>
+                            <small id="chatStatus" class="chat-status">En línea</small>
+                        </div>
+                        <button id="closeChat">✖</button>
+                    </div>
+
+                    <div id="chatMessages" class="chat-messages">
+                    <div class="message-row bot-row">
+                        <img src="img/asesor3.jpg" class="avatar">
+                        <div class="message bot-message">
+                            Hola 👋 ¿Te interesa la habitación?
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
+                    <button id="sendMessage">Enviar</button>
+                </div>
+
+                <script>
+                    const chatContainer = document.getElementById("chatContainer");
+                    const closeChat = document.getElementById("closeChat");
+                    const sendBtn = document.getElementById("sendMessage");
+                    const chatInput = document.getElementById("chatInput");
+                    const chatMessages = document.getElementById("chatMessages");
+
+                    // 🔥 Selecciona TODOS los botones con esa clase
+                    const contactButtons = document.querySelectorAll(".btn-agregar-carrito");
+
+                    // Abrir chat al hacer click en cualquiera
+                    contactButtons.forEach(button => {
+                        button.addEventListener("click", () => {
+                            chatContainer.style.display = "flex";
+                        });
+                    });
+
+                    // Cerrar chat
+                    closeChat.addEventListener("click", () => {
+                        chatContainer.style.display = "none";
+                    });
+
+                    // Agregar mensaje
+                    function addMessage(text, className) {
+                        const msg = document.createElement("div");
+                        msg.classList.add("message", className);
+                        msg.textContent = text;
+                        chatMessages.appendChild(msg);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }
+
+                    // Enviar mensaje
+                    sendBtn.addEventListener("click", sendMessage);
+
+                    chatInput.addEventListener("keypress", function(e){
+                        if(e.key === "Enter"){
+                            sendMessage();
+                        }
+                    });
+
+                    function sendMessage(){
+                        const text = chatInput.value.trim();
+                        if(text === "") return;
+
+                        addMessage(text, "user-message");
+                        chatInput.value = "";
+
+                        // 🔥 5 respuestas diferentes
+                        const respuestas = [
+                            "¡Perfecto! 😊 Esta habitación está disponible actualmente. ¿Te gustaría saber el precio mensual?",
+                            "Gracias por tu interés 🙌 ¿Quieres que te envíe información sobre ubicación y servicios incluidos?",
+                            "Excelente elección 👍 Esta habitación es muy solicitada. ¿Deseas verificar disponibilidad inmediata?",
+                            "Claro ✨ Puedo ayudarte con detalles sobre normas, precio o condiciones de reserva.",
+                            "¡Genial! 📍 ¿Te interesa conocer el costo, requisitos o agendar una visita?"
+                        ];
+
+                        // Selecciona una respuesta aleatoria
+                        const respuestaAleatoria = respuestas[Math.floor(Math.random() * respuestas.length)];
+
+                        setTimeout(() => {
+                            addMessage(respuestaAleatoria, "bot-message");
+                        }, 800);
+                    }
+
+                    
+                    </script>
+            
+            
+            
+            
+            
+            </div>
+
+            <h2 class="subtitulo-seccion">Productos Relacionados</h2>
+            
+            <section id="productos" class="productos">
+                <div class="fila">
+                    <div class="col fondo-dots">
+    <header>
+        <span class="like"><i class="fa-solid fa-heart"></i></span>
+        <span class="cart"><i class="fa-solid fa-bag-shopping"></i></span>
+    </header>
+
+    <a href="producto1.html">
+        <div class="contenido">
+            <div class="fondo orange">
+                <div class="circulo"></div>
+            </div>
+
+            <!-- MAPA DE GOOGLE -->
+                <div id="mapa" style="width:100%; height:300px; border-radius:12px;"></div>
+                <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function(){
+
+                        // Coordenadas UCV
+                        const ucv = [10.4910, -66.8792];
+
+                        // Crear mapa centrado en UCV
+                        const map = L.map('mapa').setView(ucv, 16);
+
+                        // Capa de OpenStreetMap
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19
+                        }).addTo(map);
+
+                        // Intentar obtener ubicación del usuario
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function(position){
+                                const usuario = [position.coords.latitude, position.coords.longitude];
+
+                                // Marcador usuario
+                                L.marker(usuario).addTo(map).bindPopup("Tu ubicación").openPopup();
+
+                                // Marcador UCV
+                                L.marker(ucv).addTo(map).bindPopup("UCV");
+
+                                // Mostrar ruta caminando
+                                L.Routing.control({
+                                    waypoints: [
+                                        L.latLng(usuario[0], usuario[1]),
+                                        L.latLng(ucv[0], ucv[1])
+                                    ],
+                                    lineOptions: {styles:[{color:'blue', opacity:0.6, weight:5}]},
+                                    router: L.Routing.osrmv1({
+                                        serviceUrl: 'https://router.project-osrm.org/route/v1'
+                                    }),
+                                    fitSelectedRoutes: true,
+                                    show: false,
+                                    addWaypoints: false
+                                }).addTo(map);
+
+                            }, function(){
+                                alert("No se pudo obtener tu ubicación");
+                            });
+                        } else {
+                            alert("Tu navegador no soporta geolocalización.");
+                        }
+
+                    });
+                    </script>
+
+            <h2>Habitación para estudiante de 12 m² cerca de universidad</h2>
+            <h2>$65</h2>
+                        <div class="info-ubicacion">
+                    <p id="distanciaTexto">Obteniendo tu ubicación...</p>
+                </div>
+                <script>
+
+                function calcularDistancia(lat1, lon1, lat2, lon2) {
+                    const R = 6371; // km
+                    const dLat = (lat2 - lat1) * Math.PI / 180;
+                    const dLon = (lon2 - lon1) * Math.PI / 180;
+
+                    const a =
+                        Math.sin(dLat/2) * Math.sin(dLat/2) +
+                        Math.cos(lat1 * Math.PI / 180) *
+                        Math.cos(lat2 * Math.PI / 180) *
+                        Math.sin(dLon/2) * Math.sin(dLon/2);
+
+                    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                    return R * c;
+                }
+
+                // Coordenadas fijas de la UCV
+                const universidad = {
+                    lat: 10.4910,
+                    lon: -66.8792
+                };
+
+                const textoDistancia = document.getElementById("distanciaTexto");
+
+                if (navigator.geolocation) {
+
+                    navigator.geolocation.getCurrentPosition(function(position){
+
+                        const usuario = {
+                            lat: position.coords.latitude,
+                            lon: position.coords.longitude
+                        };
+
+                        let km = calcularDistancia(
+                            usuario.lat,
+                            usuario.lon,
+                            universidad.lat,
+                            universidad.lon
+                        );
+
+                        let metros = Math.round(km * 1000);
+                        let minutos = Math.round(metros / 80); // promedio caminando
+
+                        textoDistancia.innerHTML =
+                            `📍 Estás a ${metros} metros (${minutos} min caminando) de la UCV`;
+
+                    }, function(error){
+
+                        textoDistancia.innerHTML =
+                            "No se pudo obtener tu ubicación.";
+                    });
+
+                } else {
+                    textoDistancia.innerHTML =
+                        "Tu navegador no soporta geolocalización.";
+                }
+
+                </script>
+
+                
+           </div>
+        
+        
+        </div>
+    </a>
+</div>
+                    
+
+    <script src="script.js"></script>
+</body>
+</html>

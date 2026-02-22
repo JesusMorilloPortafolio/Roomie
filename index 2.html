@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Inicio de Sesión</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, #e9b18b, #ce9b78);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login {
+      background: rgba(246, 161, 146, 0.8);
+      padding: 40px 35px;
+      border-radius: 12px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    /* Logo */
+    .login img {
+      width: 120px;
+      max-width: 70%;
+      margin-bottom: 20px;
+    }
+
+    .login h2 {
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .login input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .login button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background: #e9b18b;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .login button:hover {
+      background: #e9b18b;
+    }
+
+    .error {
+      margin-top: 10px;
+      color: red;
+      font-size: 13px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login">
+    <!-- TU LOGO -->
+    <img src="img/logo.png" alt="Logo">
+
+    <h2>Inicio de Sesión</h2>
+    <input type="text" id="usuario" placeholder="Usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="login()">Entrar</button>
+    <div class="error" id="error">Usuario o contraseña incorrectos</div>
+  </div>
+
+  <script>
+    function login() {
+      const user = document.getElementById("usuario").value;
+      const pass = document.getElementById("password").value;
+
+      if (user === "admin" && pass === "123") {
+        window.location.href = "index 3.html"; // página principal
+      } else {
+        document.getElementById("error").style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>

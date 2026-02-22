@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Splash Screen</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    .splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #f6a192;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      
+    }
+
+    .splash img {
+      width: 180px;
+      max-width: 60%;
+      margin-bottom: 25px;
+     
+    }
+
+    
+
+    /* Barra */
+    .barra-contenedor {
+      width: 200px;
+      max-width: 70%;
+      height: 10px;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .barra {
+      height: 100%;
+      width: 0%;
+      background: #e9b18b;
+      transition: width 0.2s;
+    }
+
+    .texto {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Splash -->
+  <div class="splash">
+    <img src="img/Logo.png" alt="Logo">
+
+    <div class="barra-contenedor">
+      <div class="barra" id="barra"></div>
+    </div>
+
+    <div class="texto" id="texto">Cargando 0%</div>
+  </div>
+
+  <script>
+    let progreso = 0;
+    const barra = document.getElementById("barra");
+    const texto = document.getElementById("texto");
+
+    const carga = setInterval(() => {
+      progreso++;
+      barra.style.width = progreso + "%";
+      texto.textContent = "Cargando " + progreso + "%";
+
+      if (progreso >= 100) {
+        clearInterval(carga);
+        // Redirige automáticamente al terminar
+        setTimeout(() => {
+          window.location.href = "index 2.html";
+        }, 500);
+      }
+    }, 50); // velocidad (más pequeño = más rápido)
+
+    function irAPrincipal() {
+      window.location.href = "index 2.html";
+    }
+  </script>
+
+</body>
+</html>
