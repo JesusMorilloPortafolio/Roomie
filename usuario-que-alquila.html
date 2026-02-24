@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="estilo.css">
+<title>Usuario que Alquila</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+
+/* ===== FONDO GENERAL ===== */
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #FFF1EC, #FFD8CC);
+    color:#1e293b;
+}
+
+/* ===== CONTENEDOR ===== */
+.profile-container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+/* ===== SWITCH SUPERIOR ===== */
+.user-switch{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.switch-btn{
+    background: linear-gradient(135deg,#F6A192,#E67E6B);
+    color:white;
+    padding:12px 30px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s ease;
+}
+
+.switch-btn:hover{
+    transform:translateY(-3px);
+}
+
+.switch-dropdown{
+    position:absolute;
+    top:55px;
+    background:#1e1e1e;
+    border-radius:15px;
+    overflow:hidden;
+    display:none;
+    flex-direction:column;
+    min-width:220px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+.switch-dropdown a{
+    padding:15px;
+    text-decoration:none;
+    color:#f1f5f9;
+    transition:0.3s;
+}
+
+.switch-dropdown a:hover{
+    background:#2a2a2a;
+}
+
+.user-switch.active .switch-dropdown{
+    display:flex;
+}
+
+/* ===== HEADER PERFIL ===== */
+.profile-header{
+    background:#ffffff;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    animation: fadeIn 0.8s ease;
+}
+
+.profile-header img{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #F6A192;
+    margin-bottom:15px;
+}
+
+.profile-header h2{
+    margin:5px 0;
+}
+
+/* VERIFICACIÓN */
+.verificacion{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#22c55e;
+    color:white;
+    padding:6px 15px;
+    border-radius:30px;
+    font-size:13px;
+    margin-top:10px;
+}
+
+/* ESTRELLAS */
+.rating{
+    margin-top:15px;
+    font-size:18px;
+    color:#f59e0b;
+}
+
+/* TOKENS */
+.tokens{
+    margin-top:15px;
+    font-weight:600;
+    background:#F6A192;
+    color:white;
+    padding:8px 18px;
+    border-radius:30px;
+    display:inline-block;
+}
+
+/* SECCIONES */
+.section{
+    margin-top:40px;
+}
+
+.section h3{
+    margin-bottom:20px;
+}
+
+/* TARJETAS */
+.card{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+    transition:0.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+/* BARRA CLASIFICACIÓN */
+.progress-bar{
+    background:#e2e8f0;
+    border-radius:20px;
+    overflow:hidden;
+    height:12px;
+    margin-top:10px;
+}
+
+.progress{
+    height:100%;
+    background:linear-gradient(135deg,#F6A192,#E67E6B);
+    width:85%;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .profile-header{
+        padding:25px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="profile-container">
+
+    <!-- SWITCH -->
+    <div class="user-switch">
+        <button class="switch-btn">
+            Modo Alquiler <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="switch-dropdown">
+            <a href="usuario-creado.html">Quiero alquilar</a>
+            <a href="usuario-que-alquila.html">Estoy alquilando</a>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="profile-header">
+        <img src="img/usuario.png" alt="Usuario">
+        <h2>Usuario</h2>
+
+        <div class="verificacion">
+            <i class="fa-solid fa-shield-halved"></i>
+            Verificado con DNI
+        </div>
+
+        <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            (4.8)
+        </div>
+
+        <div class="tokens">
+            🎁 340 Tokens ganados
+        </div>
+    </div>
+
+            <!-- ESTADÍSTICAS -->
+    <div class="stats">
+        <div class="stat-box">
+            <h3 class="counter" data-target="28">0</h3>
+            <p>Aqulquiladas</p>
+        </div>
+
+        <div class="stat-box">
+            <h3 class="counter" data-target="340">0</h3>
+            <p>Tokens</p>
+        </div>
+
+        <div class="stat-box">
+            <h3 class="counter" data-target="4.8">0</h3>
+            <p>Calificación</p>
+        </div>
+    </div>
+
+
+            <!-- NIVEL REPUTACIÓN -->
+    <div class="reputation">
+        <h3>Nivel de Reputación</h3>
+        <div class="level-badge gold">
+            🥇 Nivel Oro
+        </div>
+    </div>
+
+    <!-- HISTORIAL PUBLICACIONES -->
+    <div class="section">
+        <h3>Habitaciones Publicadas</h3>
+
+        <div class="card">
+            <strong>Habitación en Altamira</strong><br>
+            Publicada: Enero 2026 • 12 Reservas
+        </div>
+
+        <div class="card">
+            <strong>Habitación en Los Dos Caminos</strong><br>
+            Publicada: Octubre 2025 • 8 Reservas
+        </div>
+    </div>
+
+    <!-- COMENTARIOS RECIBIDOS -->
+    <div class="section">
+        <h3>Comentarios Recibidos</h3>
+
+        <div class="card">
+            ⭐⭐⭐⭐⭐ Excelente anfitrión, muy atento.
+        </div>
+
+        <div class="card">
+            ⭐⭐⭐⭐ Buena comunicación y responsabilidad.
+        </div>
+    </div>
+
+    <!-- CLASIFICACIÓN GENERAL -->
+    <div class="section">
+        <h3>Clasificación General</h3>
+        85% Reputación positiva
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+document.querySelector(".switch-btn").addEventListener("click", function(){
+    document.querySelector(".user-switch").classList.toggle("active");
+});
+</script>
+
+    <!-- BOTÓN VOLVER -->
+    <div class="volver-container">
+        <a href="index 3.html" class="btn-volver">
+            <i class="fa-solid fa-arrow-left"></i>
+            Volver al Inicio
+        </a>
+    </div>
+
+ <script>
+        const counters = document.querySelectorAll('.counter');
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / 100;
+
+                if(count < target){
+                    counter.innerText = (count + increment).toFixed(1);
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            updateCount();
+        });
+    </script>
+
+</body>
+</html>
